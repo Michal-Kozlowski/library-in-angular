@@ -20,6 +20,7 @@ export class SignupComponent implements OnInit {
       this.data.logged.name = name;
       this.data.logged.password = password;
       this.data.users.push({name: name, password: password});
+      this.data.saveData();
       this._router.navigate(['/library']);
     } else {
       alert("Name already in use");

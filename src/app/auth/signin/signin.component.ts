@@ -13,6 +13,7 @@ export class SigninComponent implements OnInit {
       if(user.name === name && user.password === password){
         this.data.logged.name = name;
         this.data.logged.password = password;
+        this.data.saveData();
       }
     });
     if(this.data.logged.name !== '') {
