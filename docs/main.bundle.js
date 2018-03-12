@@ -92,7 +92,7 @@ var routes = [
     { path: 'signup', component: __WEBPACK_IMPORTED_MODULE_6__auth_signup_signup_component__["a" /* SignupComponent */] },
     { path: 'user', component: __WEBPACK_IMPORTED_MODULE_7__user_user_component__["a" /* UserComponent */] },
     { path: '', component: __WEBPACK_IMPORTED_MODULE_4__welcome_welcome_component__["a" /* WelcomeComponent */] },
-    { path: '**', redirectTo: 'welcome', pathMatch: 'full' }
+    { path: '**', redirectTo: 'library', pathMatch: 'full' }
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
