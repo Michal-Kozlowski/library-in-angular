@@ -13,7 +13,7 @@
           <a [routerLink]="['/user']">{{data.logged.name}}</a>
         </li>
         <li *ngIf="this.data.logged.name" (click)="onLogout()">
-          <a [routerLink]="['/welcome']">Logout</a>
+          <a [routerLink]="['']">Logout</a>
         </li>
       </ul>
     </div>

@@ -78,7 +78,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 
-// import { CommonModule } from '@angular/common';
 
 
 
@@ -89,11 +88,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var routes = [
     { path: 'library', component: __WEBPACK_IMPORTED_MODULE_2__library_library_component__["a" /* LibraryComponent */] },
     { path: 'library/:id', component: __WEBPACK_IMPORTED_MODULE_3__book_book_component__["a" /* BookComponent */] },
-    { path: 'welcome', component: __WEBPACK_IMPORTED_MODULE_4__welcome_welcome_component__["a" /* WelcomeComponent */] },
     { path: 'signin', component: __WEBPACK_IMPORTED_MODULE_5__auth_signin_signin_component__["a" /* SigninComponent */] },
     { path: 'signup', component: __WEBPACK_IMPORTED_MODULE_6__auth_signup_signup_component__["a" /* SignupComponent */] },
     { path: 'user', component: __WEBPACK_IMPORTED_MODULE_7__user_user_component__["a" /* UserComponent */] },
-    { path: '', redirectTo: 'welcome', pathMatch: 'full' },
+    { path: '', component: __WEBPACK_IMPORTED_MODULE_4__welcome_welcome_component__["a" /* WelcomeComponent */] },
     { path: '**', redirectTo: 'welcome', pathMatch: 'full' }
 ];
 var AppRoutingModule = /** @class */ (function () {
@@ -102,10 +100,8 @@ var AppRoutingModule = /** @class */ (function () {
     AppRoutingModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
             imports: [
-                // CommonModule
                 __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* RouterModule */].forRoot(routes)
             ],
-            // declarations: []
             exports: [__WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* RouterModule */]]
         })
     ], AppRoutingModule);
@@ -576,7 +572,7 @@ module.exports = ".brand-logo {\r\n  margin-left: 10px;\r\n}"
 /***/ "./src/app/header/header.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<header id=\"header\">\n  <nav>\n    <div class=\"nav-wrapper blue lighten-2\">\n      <a [routerLink]=\"['/library']\" class=\"brand-logo left\">Library</a>\n      <ul class=\"right\">\n        <li *ngIf=\"!this.data.logged.name\">\n          <a [routerLink]=\"['/signup']\">Sign Up</a>\n        </li>\n        <li *ngIf=\"!this.data.logged.name\">\n          <a [routerLink]=\"['/signin']\">Sign In</a>\n        </li>\n        <li *ngIf=\"this.data.logged.name\">\n          <a [routerLink]=\"['/user']\">{{data.logged.name}}</a>\n        </li>\n        <li *ngIf=\"this.data.logged.name\" (click)=\"onLogout()\">\n          <a [routerLink]=\"['/welcome']\">Logout</a>\n        </li>\n      </ul>\n    </div>\n  </nav>\n</header>"
+module.exports = "<header id=\"header\">\n  <nav>\n    <div class=\"nav-wrapper blue lighten-2\">\n      <a [routerLink]=\"['/library']\" class=\"brand-logo left\">Library</a>\n      <ul class=\"right\">\n        <li *ngIf=\"!this.data.logged.name\">\n          <a [routerLink]=\"['/signup']\">Sign Up</a>\n        </li>\n        <li *ngIf=\"!this.data.logged.name\">\n          <a [routerLink]=\"['/signin']\">Sign In</a>\n        </li>\n        <li *ngIf=\"this.data.logged.name\">\n          <a [routerLink]=\"['/user']\">{{data.logged.name}}</a>\n        </li>\n        <li *ngIf=\"this.data.logged.name\" (click)=\"onLogout()\">\n          <a [routerLink]=\"['']\">Logout</a>\n        </li>\n      </ul>\n    </div>\n  </nav>\n</header>"
 
 /***/ }),
 
@@ -753,7 +749,7 @@ module.exports = "#welcome {\r\n  text-align: center;\r\n  margin-top: 20%;\r\n}
 /***/ "./src/app/welcome/welcome.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"welcome\">\n  <h1>Welcome to The Library</h1>\n  <p>You have found the best place to borrow books from</p>\n  <div class=\"row\">\n    <a [routerLink]=\"['/signup']\" class=\"blue-text text-darken-2 offset-m3 col m2 s3\">Sign Up</a>\n    <a [routerLink]=\"['/signin']\" class=\"blue-text text-darken-2 col m2 s3\">Sign In</a>\n    <a [routerLink]=\"['/library']\" class=\"blue-text text-darken-2 col l3 m3 s6\">...or just look</a>\n  </div>\n</div>"
+module.exports = "<div id=\"welcome\">\n  <h1>Welcome to The Library</h1>\n  <p>You have found the best place to borrow books from</p>\n  <div class=\"row\" *ngIf=\"!this.data.logged.name\">\n    <a [routerLink]=\"['/signup']\" class=\"blue-text text-darken-2 offset-m3 col m2 s3\">Sign Up</a>\n    <a [routerLink]=\"['/signin']\" class=\"blue-text text-darken-2 col m2 s3\">Sign In</a>\n    <a [routerLink]=\"['/library']\" class=\"blue-text text-darken-2 col l3 m3 s6\">...or just look</a>\n  </div>\n  <div class=\"row\" *ngIf=\"this.data.logged.name\">\n    <a [routerLink]=\"['/library']\" class=\"blue-text text-darken-2 offset-s4 offset-m4\">Check out our books!</a>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -763,6 +759,7 @@ module.exports = "<div id=\"welcome\">\n  <h1>Welcome to The Library</h1>\n  <p>
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WelcomeComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__data_data_service__ = __webpack_require__("./src/app/data/data.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -773,8 +770,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var WelcomeComponent = /** @class */ (function () {
-    function WelcomeComponent() {
+    function WelcomeComponent(data) {
+        this.data = data;
     }
     WelcomeComponent.prototype.ngOnInit = function () {
     };
@@ -784,7 +783,7 @@ var WelcomeComponent = /** @class */ (function () {
             template: __webpack_require__("./src/app/welcome/welcome.component.html"),
             styles: [__webpack_require__("./src/app/welcome/welcome.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__data_data_service__["a" /* DataService */]])
     ], WelcomeComponent);
     return WelcomeComponent;
 }());

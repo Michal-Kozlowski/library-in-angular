@@ -1,9 +1,12 @@
 <div id="welcome">
   <h1>Welcome to The Library</h1>
   <p>You have found the best place to borrow books from</p>
-  <div class="row">
+  <div class="row" *ngIf="!this.data.logged.name">
     <a [routerLink]="['/signup']" class="blue-text text-darken-2 offset-m3 col m2 s3">Sign Up</a>
     <a [routerLink]="['/signin']" class="blue-text text-darken-2 col m2 s3">Sign In</a>
     <a [routerLink]="['/library']" class="blue-text text-darken-2 col l3 m3 s6">...or just look</a>
+  </div>
+  <div class="row" *ngIf="this.data.logged.name">
+    <a [routerLink]="['/library']" class="blue-text text-darken-2 offset-s4 offset-m4">Check out our books!</a>
   </div>
 </div>
