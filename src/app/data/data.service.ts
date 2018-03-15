@@ -50,12 +50,14 @@ export class DataService {
 
   starsHover(index, id) {
     for(let i:number = 0; i<=index; i++) {
+      for(let j:number = 0; j<5; j++) {document.querySelectorAll("i")[(5*(id-1))+j].classList.add('noRate');} 
       document.querySelectorAll("i")[(5*(id-1))+index-i].classList.add('starHover');
     }
   }
 
   starsLeave(index, id) {
     for(let i:number = 0; i<=index; i++) {
+      for(let j:number = 0; j<5; j++) {document.querySelectorAll("i")[(5*(id-1))+j].classList.remove('noRate');}  
       document.querySelectorAll("i")[(5*(id-1))+index-i].classList.remove('starHover');
     }
   }
