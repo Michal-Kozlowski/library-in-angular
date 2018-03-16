@@ -21,11 +21,11 @@ export class DataService {
 
   saveData() {
     let local = {books: this.books, users: this.users, logged: this.logged, comments: this.comments};
-    localStorage.setItem('libraryState', JSON.stringify(local));
+    localStorage.setItem('library', JSON.stringify(local));
   }
 
   loadData() {
-    let local = localStorage.getItem('libraryState');
+    let local = localStorage.getItem('library');
     if(local) {   
       this.books = JSON.parse(local).books;    
       this.users = JSON.parse(local).users;

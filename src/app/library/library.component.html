@@ -8,7 +8,7 @@
   </div>
   <ul class="row">
     <ng-container *ngFor="let book of books">
-      <li class="col s6 m4 l3" *ngIf="matchName(book) || matchAuthor(book)">
+      <li class="col s6 m4 l3" [hidden]="!(matchName(book) || matchAuthor(book))">
         <p><i
           *ngFor="let star of data.numberOfStars(5); let index = index"
           (mouseover)="data.starsHover(index, book.id)"

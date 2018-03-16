@@ -502,10 +502,10 @@ var DataService = /** @class */ (function () {
     }
     DataService.prototype.saveData = function () {
         var local = { books: this.books, users: this.users, logged: this.logged, comments: this.comments };
-        localStorage.setItem('libraryState', JSON.stringify(local));
+        localStorage.setItem('library', JSON.stringify(local));
     };
     DataService.prototype.loadData = function () {
-        var local = localStorage.getItem('libraryState');
+        var local = localStorage.getItem('library');
         if (local) {
             this.books = JSON.parse(local).books;
             this.users = JSON.parse(local).users;
@@ -636,7 +636,7 @@ module.exports = "::-webkit-input-placeholder {\r\n  font-weight: 700;\r\n  colo
 /***/ "./src/app/library/library.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"library\">\n  <div class=\"row\">\n    <div class=\"input-field col s8 l4 offset-s2 offset-l4\">\n      <form>\n        <input type=\"text\" name=\"search\" placeholder=\"Search (by title or author)\" [(ngModel)]=\"search\">\n      </form>\n    </div>\n  </div>\n  <ul class=\"row\">\n    <ng-container *ngFor=\"let book of books\">\n      <li class=\"col s6 m4 l3\" *ngIf=\"matchName(book) || matchAuthor(book)\">\n        <p><i\n          *ngFor=\"let star of data.numberOfStars(5); let index = index\"\n          (mouseover)=\"data.starsHover(index, book.id)\"\n          (mouseleave)=\"data.starsLeave(index, book.id)\"\n          [class.rate]=\"index < data.rating(book)\"\n          (click)=\"data.starRate(index, book)\"\n          class=\"material-icons\">star\n        </i></p>\n        <a [routerLink]=\"['/library', book.id]\">\n          <img [src]=\"book.cover\" [alt]=\"book.name\" class=\"responsive-img\">\n          <p>\n            <span class=\"status green\" *ngIf=\"book.borrowedBy === ''\">available</span>\n            <span class=\"status blue\" *ngIf=\"book.borrowedBy === this.data.logged.name && book.borrowedBy !== ''\">borrowed by you</span>\n            <span class=\"status red\" *ngIf=\"book.borrowedBy !== '' && book.borrowedBy !== this.data.logged.name\">borrowed</span>\n          </p>\n          <p>\n            <span class=\"title\">{{book.name}}</span><br>\n            <span class=\"author\">{{book.author}}</span>\n          </p>\n        </a>\n      </li>\n    </ng-container>\n  </ul>\n</div>"
+module.exports = "<div id=\"library\">\n  <div class=\"row\">\n    <div class=\"input-field col s8 l4 offset-s2 offset-l4\">\n      <form>\n        <input type=\"text\" name=\"search\" placeholder=\"Search (by title or author)\" [(ngModel)]=\"search\">\n      </form>\n    </div>\n  </div>\n  <ul class=\"row\">\n    <ng-container *ngFor=\"let book of books\">\n      <li class=\"col s6 m4 l3\" [hidden]=\"!(matchName(book) || matchAuthor(book))\">\n        <p><i\n          *ngFor=\"let star of data.numberOfStars(5); let index = index\"\n          (mouseover)=\"data.starsHover(index, book.id)\"\n          (mouseleave)=\"data.starsLeave(index, book.id)\"\n          [class.rate]=\"index < data.rating(book)\"\n          (click)=\"data.starRate(index, book)\"\n          class=\"material-icons\">star\n        </i></p>\n        <a [routerLink]=\"['/library', book.id]\">\n          <img [src]=\"book.cover\" [alt]=\"book.name\" class=\"responsive-img\">\n          <p>\n            <span class=\"status green\" *ngIf=\"book.borrowedBy === ''\">available</span>\n            <span class=\"status blue\" *ngIf=\"book.borrowedBy === this.data.logged.name && book.borrowedBy !== ''\">borrowed by you</span>\n            <span class=\"status red\" *ngIf=\"book.borrowedBy !== '' && book.borrowedBy !== this.data.logged.name\">borrowed</span>\n          </p>\n          <p>\n            <span class=\"title\">{{book.name}}</span><br>\n            <span class=\"author\">{{book.author}}</span>\n          </p>\n        </a>\n      </li>\n    </ng-container>\n  </ul>\n</div>"
 
 /***/ }),
 
